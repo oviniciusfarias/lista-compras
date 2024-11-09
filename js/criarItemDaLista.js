@@ -1,3 +1,5 @@
+import { atualizaData } from "./atualizarData.js";
+import { editarItem } from "./editarItem.js";
 import { excluirItem } from "./excluirItem.js";
 import { verificarListaVazia } from "./verificarListaVazia.js";
 
@@ -101,8 +103,12 @@ export function criarItemDaLista(item) {
   imagemEditar.src = 'img/edit.svg';
   imagemEditar.alt = 'Editar';
 
-  botaoRemover.addEventListener('click', (event) => {
+  botaoRemover.addEventListener('click', () => {
     excluirItem(itemDalista);
+  });
+
+  botaoEditar.addEventListener('click', () => {
+    editarItem(itemDalista);
   })
 
   botaoRemover.appendChild(imagemRemover);
@@ -112,14 +118,8 @@ export function criarItemDaLista(item) {
   containerItemLista.appendChild(containerBotoes);
 
   // Cria o texto com o horário da criação
-  const textoHorario = document.createElement('p');
-  textoHorario.classList.add('item-lista-texto');
-  const semana = new Date().toLocaleDateString('pt-BR', {weekday: 'long'});
-  const data = new Date().toLocaleDateString('pt-BR');
-  const horario = new Date().toLocaleTimeString('pt-BR', {hour: "numeric", minute: "numeric"});
-  // textoHorario.innerText = 'Segunda-feira (31/10/2022) às 08:30';
-  textoHorario.innerText = `${semana} (${data}) às ${horario}`;
-
+  const textoHorario = atualizaData(itemDalista);
+  
   // Adiciona na li os elementos criados
   itemDalista.appendChild(containerItemLista);
   itemDalista.appendChild(textoHorario);
