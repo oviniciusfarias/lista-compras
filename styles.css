@@ -161,3 +161,7 @@ ul {
   padding: 4px;
   vertical-align: baseline;
 }
+
+#mensagem-lista-vazia {
+  margin-top: -2em;
+}
